@@ -1,0 +1,27 @@
+.requests-page h2 {
+  margin-bottom: 18px;
+  color: #333;
+}
+
+.requests-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.requests-tabs button {
+  background: #e5e9e7;
+  color: #333;
+  padding: 8px 18px;
+}
+
+.requests-tabs .active-tab {
+  background: #2f6f4f;
+  color: #fff;
+}
+
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}

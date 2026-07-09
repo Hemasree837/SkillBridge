@@ -1,0 +1,45 @@
+.search-page h2 {
+  margin-bottom: 18px;
+  color: #333;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.search-form input {
+  flex: 1;
+  min-width: 150px;
+  margin-bottom: 0;
+}
+
+.search-form button {
+  padding: 10px 20px;
+}
+
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.user-result-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.user-result-card h4 {
+  color: #2f6f4f;
+  margin-bottom: 6px;
+}
+
+.user-bio {
+  color: #555;
+  font-size: 14px;
+  margin: 8px 0;
+}

@@ -1,0 +1,60 @@
+.request-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.request-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  color: #fff;
+  margin-left: auto;
+}
+
+.status-pending {
+  background-color: #b2892f;
+}
+
+.status-accepted {
+  background-color: #2f6f4f;
+}
+
+.status-rejected {
+  background-color: #b23b3b;
+}
+
+.status-completed {
+  background-color: #555;
+}
+
+.request-message {
+  color: #555;
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+.request-date {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.request-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.request-card-actions button {
+  padding: 6px 14px;
+  font-size: 13px;
+}
