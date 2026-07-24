@@ -14,3 +14,25 @@ frontend/dist/
 
 # OS
 .DS_Store
+# Maven Wrapper
+!.mvn/
+!backend/.mvn/
+
+# Ignore local IDE/JDK folders
+.jdk/
+.maven/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# Backend
+backend/target/
+
+# IDE
+.idea/
+.vscode/
+
+# Environment
+.env
+.env.*
