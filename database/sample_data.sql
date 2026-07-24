@@ -1,11 +1,11 @@
 -- ==========================================================
--- SkillBridge Sample Data
+-- SkillBridge Sample Data (PostgreSQL)
 -- Run this AFTER the backend has started at least once
 -- (so the tables already exist), or after running schema.sql.
 -- All sample passwords are "password123" (plain text, v1 only).
+-- Connect to the right database first, e.g.:
+--   psql -U postgres -d skillbridge_db -f sample_data.sql
 -- ==========================================================
-
-USE skillbridge_db;
 
 INSERT INTO users (full_name, email, password, college, department, year, bio) VALUES
 ('Hemasree Kotika', 'hema@example.com', 'password123', 'Mother Theresa Institute of Engineering', 'CSE', 4, 'Full-stack dev who loves React and Spring Boot.'),

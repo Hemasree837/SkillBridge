@@ -4,7 +4,7 @@ A full-stack web app where students can list skills they can **teach** and skill
 
 - **Frontend:** React (Vite) + React Router + Axios
 - **Backend:** Spring Boot (Java) + Spring Data JPA
-- **Database:** MySQL
+- **Database:** PostgreSQL
 
 ---
 
@@ -41,29 +41,42 @@ Install these first:
 - **Java 17+** — `java -version`
 - **Maven** (or use the `mvnw` wrapper if you add one) — `mvn -version`
 - **Node.js 18+** and npm — `node -v`
-- **MySQL 8+** running locally — `mysql --version`
+- **PostgreSQL 14+** running locally — `psql --version`
 
 ---
 
 ## 3. Backend Setup (Spring Boot)
 
-1. Open `backend/src/main/resources/application.properties` and update the MySQL username/password to match your local setup:
-   ```properties
-   spring.datasource.username=root
-   spring.datasource.password=root
-   ```
-   You do **not** need to manually create the database — `createDatabaseIfNotExist=true` in the connection URL handles that, and `spring.jpa.hibernate.ddl-auto=update` auto-creates the tables on first run.
+1. **Create the database** — unlike MySQL, PostgreSQL does **not** auto-create databases, so you need to do this once, manually:
+   ```bash
+   # Option A: using the createdb command-line tool
+   createdb -U postgres skillbridge_db
 
-2. From the `backend` folder, run:
+   # Option B: using psql
+   psql -U postgres
+   CREATE DATABASE skillbridge_db;
+   \q
+   ```
+   (You'll be prompted for the password you set when installing PostgreSQL.)
+
+2. Open `backend/src/main/resources/application.properties` and update the username/password to match your local setup:
+   ```properties
+   spring.datasource.url=jdbc:postgresql://localhost:5432/skillbridge_db
+   spring.datasource.username=postgres
+   spring.datasource.password=YOUR_POSTGRES_PASSWORD
+   ```
+   `spring.jpa.hibernate.ddl-auto=update` will auto-create all the tables inside `skillbridge_db` the first time you run the backend.
+
+3. From the `backend` folder, run:
    ```bash
    cd backend
    mvn spring-boot:run
    ```
    The API will start at **http://localhost:8080**.
 
-3. (Optional) Load sample data — after the backend has run once (so tables exist), run:
+4. (Optional) Load sample data — after the backend has run once (so tables exist), run:
    ```bash
-   mysql -u root -p skillbridge_db < ../database/sample_data.sql
+   psql -U postgres -d skillbridge_db -f ../database/sample_data.sql
    ```
    Sample login: `hema@example.com` / `password123`
 
@@ -124,7 +137,7 @@ Install these first:
 
 **Backend**
 - `SkillBridgeApplication.java` — the entry point that boots the Spring app.
-- `entity/*.java` — map directly to MySQL tables via JPA annotations (`@Entity`, `@Id`, etc). Hibernate uses these to auto-generate the schema.
+- `entity/*.java` — map directly to PostgreSQL tables via JPA annotations (`@Entity`, `@Id`, etc). Hibernate uses these to auto-generate the schema.
 - `dto/*.java` — separate "shape" classes for data coming in from / going out to the frontend, so we never accidentally expose the password field or require the client to send more than necessary.
 - `repository/*.java` — just interfaces; Spring Data JPA auto-implements basic CRUD + our custom finder methods (like `findByEmail`).
 - `service/*.java` — where the actual business rules live (e.g. "you can't swap-request yourself", "email must be unique").
