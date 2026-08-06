@@ -27,3 +27,13 @@ INSERT INTO skills (skill_name, level, type, user_id) VALUES
 INSERT INTO swap_requests (sender_id, receiver_id, message, status, created_date) VALUES
 (2, 1, 'Hi! I can teach Java, want to swap for React lessons?', 'PENDING', NOW()),
 (4, 3, 'Can you help me learn Python basics?', 'ACCEPTED', NOW());
+
+-- ==========================================================
+-- IMPORTANT: Resync sequences after inserting explicit IDs.
+-- Without this, the next auto-generated id collides with an
+-- existing row (duplicate key error), because the sequences
+-- were never advanced past the IDs inserted above.
+-- ==========================================================
+SELECT setval('public.users_id_seq', (SELECT COALESCE(MAX(id), 1) FROM public.users));
+SELECT setval('public.skills_id_seq', (SELECT COALESCE(MAX(id), 1) FROM public.skills));
+SELECT setval('public.swap_requests_id_seq', (SELECT COALESCE(MAX(id), 1) FROM public.swap_requests));
