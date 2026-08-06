@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-// Use Vite environment variable when available, otherwise default to localhost (useful for local dev)
-// For Vite set: VITE_API_BASE_URL=https://example.com/api
-const API_BASE_URL = import.meta?.env?.VITE_API_BASE_URL || 'http://localhost:8080/api';
+// Base URL of the deployed Spring Boot backend API
+const API_BASE_URL = import.meta?.env?.VITE_API_BASE_URL || 'https://skillbridge-nt9b.onrender.com/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
